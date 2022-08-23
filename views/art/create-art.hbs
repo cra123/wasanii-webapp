@@ -1,0 +1,21 @@
+<form action="/auth/signup" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="name" name="title" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+        <textarea class="form-control" name="description" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="phone" name="price" class="form-control">
+    </div>
+    
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{{#if errorMessage}}
+{{errorMessage}}
+{{/if}}

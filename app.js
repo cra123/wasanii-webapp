@@ -14,12 +14,13 @@ const express = require("express");
 const hbs = require("hbs");
 
 const app = express();
+app.use(express.static('images'));
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
 const capitalized = require("./utils/capitalized");
-const projectName = "wasanii";
+const projectName = "Wasanii";
 
 app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
 
