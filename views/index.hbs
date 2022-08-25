@@ -16,10 +16,10 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Art</a>
+                    <a class="nav-link" href="/users/">User</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">User</a>
+                    <a class="nav-link" href="/arts/">Art</a>
                 </li>
             </ul>
         </div>
@@ -50,6 +50,7 @@
 {{#if user}}
 <h1 class="mt-2">Welcome {{user.name}}.</h1>
     <p>You can view, post and comment.</p>
+    <a class="btn btn-primary m-2 text-white" href="/art/create-art">Post</a>
 {{!-- <a href="/auth/logout">Logout</a> --}}
 {{else}}
 <h1 class="mt-2" >Welcome to Wasanii.</h1>

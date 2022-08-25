@@ -102,8 +102,9 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         }
 
         req.session.user = user;
-        console.log(user);
+        // console.log(user);
         return res.render("index", {user});
+        // return res.redirect("/");
       });
     })
 
