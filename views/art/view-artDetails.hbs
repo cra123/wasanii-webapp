@@ -1,19 +1,27 @@
-<div class="d-flex random-beer">
-    <div class="flex-shrink-0 random-beer-image ">
+<div class="d-flex">
+    {{!-- <div class="flex-shrink-0 random-beer-image ">
         <img src="..." alt="...">
-    </div>
+    </div> --}}
     <div class="product-content">
         <div class="flex-grow-1 ms-6 decription ">
-            <h1>Title</h1>
+            <h1>{{art.title}}</h1>
         </div>
         <div class="flex-grow-1 ms-3 decription ">
-            <p>Description</p>
+            <p>{{art.decription}}</p>
         </div>
         <div class="flex-grow-1 ms-3 decription ">
-            <p>Price</p>
+            <p>{{art.price}}</p>
         </div>
     </div>
+
+</div>
+<form method="POST" action="/art/createPost">
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Comment Area</label>
+        <textarea class="form-control"  rows="2"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
     {{!-- Comments Sections --}}
 
-</div>

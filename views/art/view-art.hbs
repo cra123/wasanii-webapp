@@ -1,13 +1,18 @@
-
-{{!-- Display Art --}}
+{{!-- Display Users --}}
 
 {{!-- Show Picture and Name --}}
 
-<div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Title</h5>
-        <h6 class="card-title">Title</h6>
-        <a href="/" class="btn btn-primary">Details</a>
+<div class="userList">
+    {{#each arts}}
+
+    <div class="card" id="userCard" style="width: 18rem;">
+        <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" class="card-img-top"
+            alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <a href="/arts/art/{{this._id}}" class="btn btn-primary">More</a>
+        </div>
     </div>
+    {{/each}}
+
 </div>
