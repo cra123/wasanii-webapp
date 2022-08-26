@@ -1,60 +1,37 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        {{!-- <a class="navbar-brand" href="#">Navbar</a> --}}
-            <a class="navbar-brand" href="#">
-                <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24"
-                    class="d-inline-block align-text-top">
-                Wasanii
-            </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/">User</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/arts/">Art</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="d-flex" >
-            <ul class="navbar-nav">
-                {{#if user}}
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary m-2 text-white" href="/auth/logout">Log Out</a>
-                </li>                
-                {{else}}
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary m-2 text-white" href="/auth/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary m-2 text-white" href="/auth/signup">Sign Up</a>
-                </li>
-                {{/if}}
-            </ul>
-        </div>
-    </div>
-</nav>
-
-{{!-- <h1>{{appTitle}} 🚀</h1> --}}
-
-
 {{!-- Check if a varibale has been set --}}
-{{#if user}}
-<h1 class="mt-2">Welcome {{user.name}}.</h1>
-    <p>You can view, post and comment.</p>
-    <a class="btn btn-primary m-2 text-white" href="/art/create-art">Post</a>
+{{#if SessionUser}}
+<h1 class="mt-2">Welcome {{SessionUser.name}}.</h1>
+<p>You can view, post and comment.</p>
 {{!-- <a href="/auth/logout">Logout</a> --}}
 {{else}}
-<h1 class="mt-2" >Welcome to Wasanii.</h1>
-    <p>You can view but can't post or comment</p>
+<h1 class="mt-2">Welcome to Wasanii.</h1>
+<p>You can view but can't post or comment</p>
 {{!-- <a href="/auth/login">Login</a>
 <a href="/auth/signup">Sign Up</a> --}}
-{{/if}} 
+{{/if}}
+<div class="landing-preview">
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Users</h5>
+                <img src="https://images.unsplash.com/photo-1617503752587-97d2103a96ea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXJ0d29ya3xlbnwwfHwwfHw%3D&w=1000&q=80" class="card-img" id="landing-image"alt="...">
+                <p class="card-text">Meet with the most Talented Individual in the Art and Photography Industry</p>
+                <a href="/users/" class="btn btn-primary">User</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Art</h5>
+                <img src="https://i.pinimg.com/originals/92/25/26/922526935f35f58cdbab01453c4e5baf.jpg"
+                    class="card-img" id="landing-image" alt="...">
+                <p class="card-text">See the most amazing and beautiful art.</p>
+                <a href="/arts/" class="btn btn-primary">Art</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

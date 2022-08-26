@@ -1,29 +1,46 @@
-<div class="d-flex">
-    {{!-- <div class="flex-shrink-0 random-beer-image ">
-        <img src="..." alt="...">
-    </div> --}}
+<h4>{{user.name}}</h4>
+<hr class="solid">
+<div class="flex-container" id="art-detail">
     <div class="product-content">
-        <div class="flex-grow-1 ms-6 decription ">
-            <h1>{{user.name}}</h1>
-        </div>
         <div class="flex-grow-1 ms-3 decription ">
+            <i>
+                <h6>Email:</h6>
+            </i>
             <p>{{user.email}}</p>
+
         </div>
         <div class="flex-grow-1 ms-3 decription ">
+            <i>
+                <h6>Phone: </h6>
+            </i>
             <p>{{user.phone}}</p>
         </div>
         <div class="flex-grow-1 ms-3 decription ">
+            <i>
+                <h6>Address: </h6>
+            </i>
             <p>{{user.address}}</p>
         </div>
     </div>
 
 </div>
 
-<div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Title</h5>
-        <h6 class="card-title">Title</h6>
-        <a href="/" class="btn btn-primary">Details</a>
+<hr class="solid">
+
+<h3>{{user.name}} Arts</h3>
+
+<div class="userList">
+    {{#each user.art}}
+
+    <div class="card" id="userCard" style="width: 18rem;">
+        <img src="{{this.imageUrl}}" class="figure-img img-fluid rounded" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <h6>${{this.price}}</h6>
+            <a href="/arts/art/{{this._id}}" class="btn btn-primary">See More</a>
+        </div>
     </div>
+    {{/each}}
+
 </div>
+<hr class="solid">

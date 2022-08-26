@@ -4,18 +4,18 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 
-// How many rounds should bcrypt run the salt (default [10 - 12 rounds])
+// Defince the number of times the bycrypt algorithm will run
 const saltRounds = 10;
 
-// Require the User model in order to interact with the database
+// Import the user model
 const User = require("../models/User.model");
 
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
-const isLoggedOut = require("../middleware/isLoggedOut");
-const isLoggedIn = require("../middleware/isLoggedIn");
+const isLoggedOut = require("../middleware/isLoggedOut"); //Check if user is logged out
+const isLoggedIn = require("../middleware/isLoggedIn"); //Check if user is logged in
 
-router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup");
+router.get("/signup", isLoggedOut, (req, res) => { 
+  res.render("auth/signup"); //Assit us to render the signup page
 });
 
 router.post("/signup", isLoggedOut, (req, res) => {
@@ -47,9 +47,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
       })
       .then((user) => {
         // Bind the user to the session object
-        req.session.user = user;
-        console.log(user);
-        return res.render("index", { user });
+        // req.session.user = user;
+        // SessionUser = req.session.user;
+        return res.redirect("/auth/login");
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -70,30 +70,28 @@ router.post("/signup", isLoggedOut, (req, res) => {
 });
 
 router.get("/login", isLoggedOut, (req, res) => {
-  res.render("auth/login");
+  res.render("auth/login"); //Assit us to render the login page
 });
 
 router.post("/login", isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
 
-  if (!email) {
+  if (!email) { //Check if the email field is empty or not
     return res
       .status(400)
       .render("auth/login", { errorMessage: "Please provide your Email." });
   }
 
-
-  // Search the database for a user with the username submitted in the form
   User.findOne({ email })
     .then((user) => {
-      // If the user isn't found, send the message that user provided wrong credentials
+      //it help us check if the user exist in the database or not
       if (!user) {
         return res
           .status(400)
           .render("auth/login", { errorMessage: "Wrong credentials." });
       }
 
-      // If user is found based on the username, check if the in putted password matches the one saved in the database
+      // If user is found ,it check if the provided password matches the one saved in the database
       bcrypt.compare(password, user.password).then((isSamePassword) => {
         if (!isSamePassword) {
           return res
@@ -101,10 +99,11 @@ router.post("/login", isLoggedOut, (req, res, next) => {
             .render("auth/login", { errorMessage: "Wrong credentials." });
         }
 
+        // If the password matches, login the user and redirect to the home page
         req.session.user = user;
-        // console.log(user);
-        return res.render("index", {user});
-        // return res.redirect("/");
+        SessionUser = req.session.user;
+        // console.log(SessionUser);
+        return res.redirect("/");
       });
     })
 
@@ -116,7 +115,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     });
 });
 
-router.get("/logout", isLoggedIn, (req, res) => {
+router.get("/logout", isLoggedIn, (req, res) => { //Assit us to logout the user
   req.session.destroy((err) => {
     if (err) {
       return res

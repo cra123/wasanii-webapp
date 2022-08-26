@@ -1,27 +1,52 @@
-<div class="d-flex">
-    {{!-- <div class="flex-shrink-0 random-beer-image ">
-        <img src="..." alt="...">
-    </div> --}}
+<div class="flex-container" id="art-detail">
     <div class="product-content">
-        <div class="flex-grow-1 ms-6 decription ">
+        <img src="{{art.imageUrl}}" class="figure-img img-fluid rounded" alt="...">
+    </div>
+
+
+    <div class="product-content">
+        <div class="flex-grow-1 ml-4 decription ">
             <h1>{{art.title}}</h1>
         </div>
         <div class="flex-grow-1 ms-3 decription ">
-            <p>{{art.decription}}</p>
+            <i>
+                <h6>Decription:</h6>
+            </i>
+            <p>{{art.description}}</p>
+
         </div>
         <div class="flex-grow-1 ms-3 decription ">
-            <p>{{art.price}}</p>
+            <i>
+                <h6>Price: </h6>
+            </i>
+            <p>${{art.price}}</p>
         </div>
     </div>
 
 </div>
-<form method="POST" action="/art/createPost">
+
+<hr class="solid">
+
+<figure class="text-start">
+    <h5>Comments</h5>
+    {{#each comments}}
+    <blockquote class="blockquote">
+        <p>{{this.content}}</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+        <cite title="Source Title">{{this.author.name}}</cite>
+    </figcaption>
+    {{/each}}
+</figure>
+
+<hr class="solid">
+
+<form method="POST" action="/arts/art/{{art._id}}/comment">
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Comment Area</label>
-        <textarea class="form-control"  rows="2"></textarea>
+        <textarea class="form-control" rows="2" name="content"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-    {{!-- Comments Sections --}}
-
+{{!-- Comments Sections --}}
